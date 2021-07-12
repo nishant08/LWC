@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    
+    <ltng:require scripts="{!$Resource.ChartJs1}" afterScriptsLoaded="{!c.ctr}"/>
+    
+    <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--3-of-4">
+        <canvas aura:id="barChart" id="barChart" />
+    </div>
+	
+</aura:component>

@@ -1,0 +1,49 @@
+<apex:page controller="SurveyFormController" lightningStylesheets="true" sidebar="false">
+
+    <style>
+        .ques {
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+
+    <apex:pageMessages />
+
+    <apex:form id="form">
+        <apex:outputPanel rendered="{!selectedQuesList.size>0}">
+
+
+            <apex:pageBlock title="">
+
+                <apex:repeat value="{!selectedQuesList}" var="survey">
+                    <div>
+                        <apex:outputText styleClass="ques" value="{!survey.ques}" id="theValue" /><br/>
+
+                        <apex:selectCheckboxes value="{!survey.selectedChecbox}" rendered="{!IF(survey.type ='Checkbox',true,false)}">
+                            <apex:selectOptions value="{!survey.options}" />
+                        </apex:selectCheckboxes>
+
+                        <apex:selectRadio value="{!survey.selectedText}" rendered="{!IF(survey.type ='Radio',true,false)}">
+                            <apex:selectOptions value="{!survey.options}" />
+                        </apex:selectRadio>
+
+                        <apex:inputText value="{!survey.selectedText}" rendered="{!IF(survey.type ='Text',true,false)}" />
+
+                    </div>
+
+                    <br/>
+                </apex:repeat>
+
+                <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton value="Submit" action="{!submitSurvey}" />
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+        </apex:outputPanel>
+
+        <apex:outputPanel rendered="{!NOT(selectedQuesList.size>0)}">
+            <h1 style="text-align: center;">No survey assigned to you</h1>
+        </apex:outputPanel>
+    </apex:form>
+
+
+</apex:page>

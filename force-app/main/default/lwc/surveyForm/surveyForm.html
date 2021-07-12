@@ -1,0 +1,59 @@
+<template>
+    <lightning-card title="Survey" icon-name="custom:custom14">
+
+        <template if:true={isLoading}>
+            <lightning-spinner size="small" alternative-text="Loading" variant="brand"></lightning-spinner>
+        </template>
+        <template if:false={surveyData}>
+            No survey assigned to you
+        </template>
+
+        <template if:true={surveyData}>
+            <template for:each={surveyData} for:item="survey">
+
+                <lightning-record-edit-form key={survey.Id} object-api-name="Questions__c" record-id={survey.Questions__c}>
+                    <lightning-messages></lightning-messages>
+                    <lightning-output-field field-name="Question__c"></lightning-output-field>
+                    
+                    <c-questions type={survey.Questions__r.Type__c} options={survey.Questions__r.Answers__c}></c-questions>
+
+                        <c-questions-picklist onpick={wdcwec} quesid={survey.Id} type={survey.Questions__r.Type__c} options={survey.Questions__r.Answers__c}></c-questions-picklist>
+                    
+                </lightning-record-edit-form>
+
+
+            </template>
+            <lightning-button type="submit" label="Save" class="slds-m-top_small" variant="brand">
+            </lightning-button>
+            
+
+
+
+        </template>
+
+        <!--  <template if:true={surveyData}>
+            <lightning-card>
+            <template for:each={surveyData} for:item="accWithContacts">
+                <div key={accWithContacts.Id}>                   
+
+                    <label class="slds-form-element__label" for="select-01">{accWithContacts.ques}</label>
+                    
+                    <c-questions type={accWithContacts.type} options={accWithContacts.options}></c-questions>
+                    <c-questions-picklist type={accWithContacts.type} options={accWithContacts.options}></c-questions-picklist>
+                            
+                </div>
+            </template>
+        </lightning-card>
+        </template>-->
+
+        <template if:true={error}>
+            {error}
+        </template>
+
+
+
+    </lightning-card>
+
+
+
+</template>

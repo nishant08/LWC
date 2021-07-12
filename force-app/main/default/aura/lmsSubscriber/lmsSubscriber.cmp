@@ -1,0 +1,28 @@
+<!-- mySubscriberComponent.cmp -->
+<aura:component
+  implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome"
+>
+  <aura:attribute name="recordValue" type="String" />
+
+  <lightning:messageChannel
+    type="SampleMessageChannel__c"
+    onMessage="{!c.handleMessage}"
+    scope="APPLICATION"
+  />
+
+  <lightning:card title="Aura Subscriber Component" iconName="custom:custom14">
+    <p class="slds-p-horizontal_small">
+      Message from Publisher Component: <br />
+
+      <textarea
+        id="receivedMessageTextArea"
+        class="textareaReceivedMessage"
+        rows="7"
+        style="width: 435px;height: 200px;"
+        disabled="true"
+      >
+        {!v.recordValue}
+      </textarea>
+    </p>
+  </lightning:card>
+</aura:component>

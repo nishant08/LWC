@@ -1,0 +1,22 @@
+<!-- publisherComponent.cmp -->
+<aura:component
+  implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome"
+>
+  <lightning:card
+    iconName="custom:custom14"
+    title="Aura Publisher Component"
+    footer="Aura Publisher Component"
+  >
+    <p class="slds-p-horizontal_small">
+      <lightning:button
+        label="Send Payload"
+        variant="brand"
+        onclick="{! c.handleClick }"
+      />
+      <lightning:messageChannel
+        type="SampleMessageChannel__c"
+        aura:id="sampleMessageChannel"
+      />
+    </p>
+  </lightning:card>
+</aura:component>
